@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Añadir comensal</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="formComensal" class="form" (submit)="validarFormulario()">
+    <ion-list>
+      <ion-item>
+        <ion-label>Nombre: </ion-label>
+        <ion-input formControlName="nombre" placeholder="Nombre" type="text" id="nombre"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Apellidos: </ion-label>
+        <ion-input formControlName="apellidos" placeholder="Apellidos" type="text" id="apellidos"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Menú Alérgeno</ion-label>
+        <ion-toggle slot="end" formControlName="alergeno" color="warning"></ion-toggle>
+      </ion-item>
+      <ion-item>
+        <ion-label>Menú Infantil</ion-label>
+        <ion-toggle slot="end" formControlName="infantil" color="success"></ion-toggle>
+      </ion-item>
+    </ion-list>
+    <ion-buttons class="botoneraHorizontal">
+      <ion-button *ngIf="!es_crear_mesa" type="submit" expand="block" shape="round" color="success"
+        [disabled]="formComensal.invalid" (click)="editarComensal(comensal!)">
+        Editar
+      </ion-button>
+      <ion-button type="button" expand="block" shape="round" color="danger" (click)="mostrarAlerta()">
+        Cancelar
+      </ion-button>
+      <ion-button *ngIf="es_crear_mesa" type="submit" expand="block" shape="round" color="success"
+        [disabled]="formComensal.invalid" (click)="crearComensal()">
+        Crear
+      </ion-button>
+    </ion-buttons>
+  </form>
+</ion-content>

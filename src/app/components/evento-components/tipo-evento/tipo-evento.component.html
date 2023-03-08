@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Tipo de evento</ion-title>
+    <ion-buttons>
+      <ion-back-button *ngIf="esEdicionEvento" [routerLink]="['/evento/editar-evento']" ></ion-back-button>
+      <ion-back-button *ngIf="!esEdicionEvento" [routerLink]="['/home/inicio']" ></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="center">
+  <ion-list lines="none" class="center">
+    <ion-item></ion-item>
+    <ion-button (click)="elegirTipo('Boda')">Boda</ion-button>
+    <ion-item></ion-item>
+    <ion-button (click)="elegirTipo('Bautizo')">Bautizo</ion-button>
+    <ion-item></ion-item>
+    <ion-button (click)="elegirTipo('Comunión')">Comunion</ion-button>
+  </ion-list>
+</ion-content>

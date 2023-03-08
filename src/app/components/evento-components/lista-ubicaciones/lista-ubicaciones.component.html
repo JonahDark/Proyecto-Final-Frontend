@@ -1,0 +1,57 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+      <ion-title *ngIf="es_admin && !es_crear_evento && !es_edicion_evento" class="titleHeader">Todas las ubicaciones</ion-title>
+      <ion-title *ngIf="es_crear_evento || es_edicion_evento" class="titleHeader">Ubicaciones de tipo {{tipo}}</ion-title>
+      <ion-icon *ngIf="es_admin && !es_crear_evento && !es_edicion_evento" name="add-circle-outline" type="button" (click)="irAAddUbicacion()" size="large"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="num_ubicaciones == 0">
+  <h3 style="color: tomato;"> No existen ubicaciones</h3>
+</ion-content>
+
+<ion-content *ngIf="es_admin && !es_crear_evento && !es_edicion_evento">  
+  <ion-list *ngFor="let ubicacion of ubicaciones">
+    <ion-item>
+      <ion-card>
+        <img [src]="ubicacion.foto" />
+        <ion-card-header>
+          <ion-card-title>{{ubicacion.nombre}}</ion-card-title>
+          <ion-card-subtitle>{{ubicacion.precio | currency: 'EUR':'symbol':undefined:'es-ES'}}</ion-card-subtitle>
+        </ion-card-header>
+
+        <ion-card-content>
+          <ion-buttons slot="buttons">
+            <ion-button color="primary" (click)="irAEditarUbicacion(ubicacion)">Editar</ion-button>
+            <ion-button color="danger" (click)="borrarUbicacion(ubicacion.id!)">Borrar</ion-button>
+          </ion-buttons>
+        </ion-card-content>
+      </ion-card>
+    </ion-item>
+  </ion-list>
+</ion-content>
+
+<ion-content *ngIf="es_crear_evento || es_edicion_evento">  
+  <ion-list *ngFor="let ubicacion of ubicacionesTipo">
+    <ion-item>
+      <ion-card>
+        <img [src]="ubicacion.foto" />
+        <ion-card-header>
+          <ion-card-title>{{ubicacion.nombre}}</ion-card-title>
+          <ion-card-subtitle>{{ubicacion.precio | currency: 'EUR':'symbol':undefined:'es-ES'}}</ion-card-subtitle>
+        </ion-card-header>
+
+        <ion-card-content>
+          <ion-buttons slot="buttons">
+            <ion-button color="primary" (click)="verUbicacion(ubicacion)">Detalles</ion-button>
+            <ion-button color="success" (click)="elegirUbicacion(ubicacion)">Elegir</ion-button>
+          </ion-buttons>
+        </ion-card-content>
+      </ion-card>
+    </ion-item>
+  </ion-list>
+</ion-content>
+

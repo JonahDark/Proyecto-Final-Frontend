@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Formulario Menú</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="form_menu" class="form" (submit)="validarFormulario()">
+    <ion-list>
+      <ion-item>
+        <ion-label>Nombre: </ion-label>
+        <ion-input formControlName="nombre" placeholder="Nombre" type="text" id="nombre"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Tipo:</ion-label>
+        <ion-select placeholder="Tipo" formControlName="tipo">
+          <ion-select-option value="PREMIUM">Premium</ion-select-option>
+          <ion-select-option value="STANDAR">Standard</ion-select-option>          
+          <ion-select-option value="LOWCOST">Low-cost</ion-select-option> 
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label>Precio Menú : </ion-label>
+        <ion-input formControlName="precio_menu" placeholder="Precio Menú" type="number" id="precio_menu"></ion-input>
+      </ion-item> 
+      <ion-item>
+        <ion-label>Precio Menú infantil: </ion-label>
+        <ion-input formControlName="precio_menu_infantil" placeholder="Precio Menú Infantil" type="number" id="precio_menu_infantil"></ion-input>
+      </ion-item>
+      
+      <ion-item>
+        <ion-label>Precio Menú alergeno: </ion-label>
+        <ion-input formControlName="precio_menu_alergeno" placeholder="Precio Menú Alérgeno" type="number" id="precio_menu_alergeno"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Precio alergeno-infantil: </ion-label>
+        <ion-input formControlName="precio_menu_alergeno_infantil" placeholder="Precio Menú Alérgeno-Infantil" type="number" id="precio_menu_alergeno_infantil"></ion-input>
+      </ion-item>
+      
+      <ion-item>
+        <ion-label>Foto: </ion-label>
+        <ion-input formControlName="foto" placeholder="Foto" type="text" id="foto"></ion-input>
+      </ion-item>
+    </ion-list>
+    <ion-buttons class="botoneraHorizontal">      
+      <ion-button *ngIf="!es_editar_menu" type="submit" expand="block" shape="round" color="success"
+        [disabled]="form_menu.invalid" (click)="crearMenu()">
+        Crear
+      </ion-button>
+      <ion-button type="button" expand="block" shape="round" color="danger" (click)="mostrarAlerta()">
+        Cancelar
+      </ion-button>
+      <ion-button *ngIf="es_editar_menu" type="submit" expand="block" shape="round" color="success"
+        [disabled]="form_menu.invalid" (click)="editarMenu(menu!)">
+        Editar
+      </ion-button>
+    </ion-buttons>
+  </form>
+</ion-content>

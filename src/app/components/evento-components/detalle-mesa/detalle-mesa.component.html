@@ -1,0 +1,60 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Detalle de mesa {{mesa.nombre}}</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button [routerLink]="['/evento/mesas']"></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-icon
+        *ngIf="mesa.tipoMesa==='Redonda' && num_comensales_mesa !== mesa.num_max_comensales_redonda && num_comensales_evento!== evento.ubicacion!.aforo"
+        size="large" name="person-add-outline" (click)="anyadirComensal()">
+      </ion-icon>
+      <ion-icon
+        *ngIf="mesa.tipoMesa==='Larga' && num_comensales_mesa !== mesa.num_max_comensales_larga && num_comensales_evento!== evento.ubicacion!.aforo"
+        size="large" name="person-add-outline" (click)="anyadirComensal()">
+      </ion-icon>
+      <ion-icon
+        *ngIf="mesa.tipoMesa==='MediaLuna' && num_comensales_mesa !== mesa.num_max_comensales_media_luna && num_comensales_evento!== evento.ubicacion!.aforo"
+        size="large" name="person-add-outline" (click)="anyadirComensal()">
+      </ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-label>Nombre de mesa: {{mesa.nombre}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Tipo mesa: {{mesa.tipoMesa}}</ion-label>
+    </ion-item>
+    <ion-item *ngIf="mesa.tipoMesa === 'Redonda'">
+      <ion-label>Numero máximo de comensales: {{mesa.num_max_comensales_redonda}} </ion-label>
+    </ion-item>
+    <ion-item *ngIf="mesa.tipoMesa === 'Larga'">
+      <ion-label>Numero máximo de comensales: {{mesa.num_max_comensales_larga}} </ion-label>
+    </ion-item>
+    <ion-item *ngIf="mesa.tipoMesa === 'MediaLuna'">
+      <ion-label>Numero máximo de comensales: {{mesa.num_max_comensales_media_luna}} </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Numero de comensales: {{num_comensales_mesa}} </ion-label>
+    </ion-item>
+    <ion-item *ngIf="mesa.tipoMesa==='Redonda' && num_comensales_mesa === mesa.num_max_comensales_redonda"
+      class="center">
+      <h4 style="color: tomato;"> Ha llegado al numero máximo de comensales en Mesa</h4>
+    </ion-item>
+    <ion-item *ngIf="mesa.tipoMesa==='Larga' && num_comensales_mesa === mesa.num_max_comensales_larga" class="center">
+      <h4 style="color: tomato;"> Ha llegado al numero máximo de comensales en Mesa</h4>
+    </ion-item>
+    <ion-item *ngIf="mesa.tipoMesa==='MediaLuna' && num_comensales_mesa === mesa.num_max_comensales_media_luna"
+      class="center">
+      <h4 style="color: tomato;"> Ha llegado al numero máximo de comensales en Mesa</h4>
+    </ion-item>
+  </ion-list>
+  <ion-button *ngIf="num_comensales_mesa!==0" type="submit" expand="block" shape="round" color="primary"
+    (click)="verComensales()">
+    Ver comensales
+  </ion-button>
+</ion-content>

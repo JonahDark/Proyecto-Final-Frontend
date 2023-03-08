@@ -1,0 +1,73 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title class="titleHeader"> Presupuesto {{evento.nombre}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-label>
+        Ubicación: {{ubicacion.nombre}} = {{ubicacion.precio | currency: 'EUR':'symbol':undefined:'es-ES'}}
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>
+        Decoración: {{decoracion.nombre}} = {{decoracion.precio | currency: 'EUR':'symbol':undefined:'es-ES'}}
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>
+        Decoración: {{num_mesas}} Mesas x {{decoracion.precio | currency: 'EUR':'symbol':undefined:'es-ES'}}
+        = {{precio_total_decoracion | currency: 'EUR':'symbol':undefined:'es-ES'}}
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>
+        Menú: {{menu.nombre}} = {{menu.precio_menu | currency: 'EUR':'symbol':undefined:'es-ES'}}
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>
+        Menú normal: {{num_menu_normales}} x {{menu.precio_menu | currency: 'EUR':'symbol':undefined:'es-ES'}}
+        = {{precio_total_menu_normal | currency: 'EUR':'symbol':undefined:'es-ES'}}
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>
+        Menú alérgeno: {{num_menu_alergenos}} x {{menu.precio_menu_alergeno! | currency: 'EUR':'symbol':undefined:'es-ES'}}
+        = {{precio_total_menu_alergeno | currency: 'EUR':'symbol':undefined:'es-ES'}}
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>
+        Menú infantil: {{num_menu_infantiles}} x {{menu.precio_menu_infantil! | currency: 'EUR':'symbol':undefined:'es-ES'}}
+        = {{precio_total_menu_infantil | currency: 'EUR':'symbol':undefined:'es-ES'}}
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>
+        Menú alérgeno-infantil: {{num_menu_alergenos_infantiles}} x {{menu.precio_menu_alergeno_infantil! | currency: 'EUR':'symbol':undefined:'es-ES'}}
+        = {{precio_total_menu_alergeno_infantil | currency: 'EUR':'symbol':undefined:'es-ES'}}
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>
+        Precio total Menú: {{precio_total_menu  | currency: 'EUR':'symbol':undefined:'es-ES'}}
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>
+        Precio total Evento: {{precio_total_evento  | currency: 'EUR':'symbol':undefined:'es-ES'}}
+      </ion-label>
+    </ion-item>
+  </ion-list>
+  <ion-buttons>
+    <ion-button (click)="realizarPago(precio_total_evento)" color="success">
+      Realizar Solicitud de Pago
+    </ion-button>
+  </ion-buttons>
+</ion-content>

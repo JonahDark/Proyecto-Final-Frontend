@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="center">
+    <h3>Introduce los datos registrados</h3>
+  </div>
+  <form [formGroup]="formularioInicioSesion" class="form" (submit)="validarFormulario()">
+    <ion-list>
+      <ion-item>        
+        <ion-input placeholder="Username" type="text" id="username" formControlName="username"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="username?.errors?.['required'] && username?.touched">
+        <p [ngStyle]="{color: 'tomato'}">El campo username es obligatorio</p>
+      </ion-item>
+      <ion-item>        
+        <ion-input placeholder="Password" type="password" id="password" formControlName="password"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="password?.errors?.['required'] && password?.touched">
+        <p [ngStyle]="{color: 'tomato'}">El campo password es obligatorio</p>
+      </ion-item>
+    </ion-list>
+  </form>
+  <ion-buttons class="botoneraHorizontal">
+    <ion-button type="button" expand="block" shape="round" color="danger" (click)="mostrarAlerta()">
+      Cancelar
+    </ion-button>
+    <ion-button type="submit" expand="block" shape="round" color="success" [disabled]="formularioInicioSesion.invalid" (click)="login()">
+      Aceptar
+    </ion-button>
+  </ion-buttons>
+  <div class="center" style="padding-top: 80px;">
+    <ion-label>No estas registrado? Hazlo <a routerLink="/auth/register">aquí</a></ion-label>
+  </div>
+
+</ion-content>

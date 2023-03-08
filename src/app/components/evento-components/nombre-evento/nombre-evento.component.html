@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons>
+      <ion-back-button *ngIf="esEdicion" [routerLink]="['/evento/editar-evento']" ></ion-back-button>
+      <ion-back-button *ngIf="!esEdicion" [routerLink]="['/evento/tipo']" ></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      Nombre de evento
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="formNombre" class="form" (submit)="validarFormulario()">
+    <ion-item>
+      <ion-input formControlName="nombre" placeholder="Nombre de Evento" type="text" id="nombre"></ion-input>
+    </ion-item>
+    <ion-buttons>
+      <ion-button color="primary" (click)="irATipo()" [disabled]="!formNombre.valid">Aceptar</ion-button>      
+    </ion-buttons>
+  </form>
+</ion-content>

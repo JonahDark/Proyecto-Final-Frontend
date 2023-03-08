@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button *ngIf="esEdicion" [routerLink]="['/evento/editar-evento']" ></ion-back-button>
+      <ion-back-button *ngIf="!esEdicion" [routerLink]="['/evento/fechaHora']" ></ion-back-button>
+    </ion-buttons>
+    <ion-title class="titleHeader">Ver Tipos de Espacios</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list lines="none" class="center">
+    <ion-item>
+    </ion-item>
+    <ion-button (click)="irASalas()">Ver Salas</ion-button>
+    <ion-item>
+    </ion-item>
+    <ion-button (click)="irAJardines()">Ver Jardines</ion-button>
+  </ion-list>
+</ion-content>

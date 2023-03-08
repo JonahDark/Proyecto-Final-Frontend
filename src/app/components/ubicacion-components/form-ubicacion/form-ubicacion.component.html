@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Formulario Mesa</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="form_ubicacion" class="form" (submit)="validarFormulario()">
+    <ion-list>
+      <ion-item>
+        <ion-label>Nombre: </ion-label>
+        <ion-input formControlName="nombre" placeholder="Nombre" type="text" id="nombre"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Tipo:</ion-label>
+        <ion-select placeholder="Tipo" formControlName="tipo">
+          <ion-select-option value="jardin">Jardín</ion-select-option>
+          <ion-select-option value="sala">Sala</ion-select-option>          
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label>Aforo: </ion-label>
+        <ion-input formControlName="aforo" placeholder="Aforo" type="number" id="aforo"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Precio: </ion-label>
+        <ion-input formControlName="precio" placeholder="Precio" type="number" id="precio"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Descripción: </ion-label>
+        <ion-input formControlName="descripcion" placeholder="Descripción" type="text" id="descripcion"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="!es_editar_ubicacion">
+        <ion-label>Foto: </ion-label>
+        <ion-input formControlName="foto" placeholder="Foto" type="text" id="foto"></ion-input>
+      </ion-item>
+    </ion-list>
+    <ion-buttons class="botoneraHorizontal">      
+      <ion-button *ngIf="!es_editar_ubicacion" type="submit" expand="block" shape="round" color="success"
+        [disabled]="form_ubicacion.invalid" (click)="crearUbicacion()">
+        Crear
+      </ion-button>
+      <ion-button type="button" expand="block" shape="round" color="danger" (click)="mostrarAlerta()">
+        Cancelar
+      </ion-button>
+      <ion-button *ngIf="es_editar_ubicacion" type="submit" expand="block" shape="round" color="success"
+        [disabled]="form_ubicacion.invalid" (click)="editarUbicacion(ubicacion!)">
+        Editar
+      </ion-button>
+    </ion-buttons>
+  </form>
+</ion-content>

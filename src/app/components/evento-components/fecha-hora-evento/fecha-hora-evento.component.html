@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button *ngIf="esEdicion" [routerLink]="['/evento/editar-evento']"></ion-back-button>
+      <ion-back-button *ngIf="!esEdicion" [routerLink]="['/evento/nombre']"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="titleHeader">Fecha</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content class="center">
+  <ion-datetime  presentation="date" #datetime [(ngModel)]="fecha" (ionChange)="showdate()" locale="es-ES">    
+    <span slot="title">Seleccione Fecha del Evento</span>
+  </ion-datetime>
+  <ion-list>
+    <ion-item>      
+      <ion-select placeholder="Seleccione Horario" #valorSelect [(ngModel)]="horario" >
+        <ion-select-option value="mañana">Por la Mañana</ion-select-option>
+        <ion-select-option value="tarde">Por la tarde</ion-select-option>        
+      </ion-select>
+    </ion-item>
+  </ion-list>
+  <ion-button *ngIf="selecciona && valorSelect.value" color="primary" (click)="seleccionarFecha()">Aceptar</ion-button>
+</ion-content>

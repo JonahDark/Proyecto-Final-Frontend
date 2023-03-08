@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button *ngIf="es_edicion_evento" [routerLink]="['/evento/editar-evento']"></ion-back-button>
+      <ion-back-button *ngIf="!es_edicion_evento"></ion-back-button>
+      <ion-title class="titleHeader">Tipo de decoración</ion-title>
+      <ion-icon *ngIf="es_admin && !es_crear_evento && !es_edicion_evento" name="add-circle-outline" type="button" (click)="irAAddDecoracion()" size="large"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="num_decoraciones == 0">
+  <h3 style="color: tomato;"> No existen decoraciones</h3>
+</ion-content>
+
+<ion-content>
+  <ion-list *ngFor="let decoracion of decoraciones">
+    <ion-item>
+      <ion-card>
+        <img [src]="decoracion.foto" />
+        <ion-card-header>
+          <ion-card-title>{{decoracion.nombre}}</ion-card-title>
+          <ion-card-subtitle>{{decoracion.precio | currency: 'EUR':'symbol':undefined:'es-ES'}}</ion-card-subtitle>
+        </ion-card-header>
+
+        <ion-card-content>
+          <ion-buttons slot="buttons">
+            <ion-button *ngIf="es_admin && !es_crear_evento && !es_edicion_evento" color="primary"
+              (click)="irAEditarDecoracion(decoracion)">Editar</ion-button>
+            <ion-button *ngIf="es_admin && !es_crear_evento && !es_edicion_evento" color="danger"
+              (click)="borrarDecoracion(decoracion.id!)">Borrar</ion-button>
+            <ion-button *ngIf="(!es_admin || es_admin ) && es_crear_evento || es_edicion_evento" color="success"
+              (click)="elegirDecoracion(decoracion)">Elegir</ion-button>
+          </ion-buttons>
+        </ion-card-content>
+      </ion-card>
+    </ion-item>
+  </ion-list>
+</ion-content>

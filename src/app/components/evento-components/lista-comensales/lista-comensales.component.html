@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">   
+      <ion-back-button></ion-back-button>   
+    </ion-buttons>
+    <ion-title class="titleHeader">Comensales de {{mesa.nombre}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content *ngIf="num_comensales == 0">
+  <h3 style="color: tomato;"> No existen comensales</h3>
+</ion-content>
+
+<ion-content>
+  <ion-list *ngFor="let comensal of comensales">
+    <ion-item>
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>{{comensal.nombre}}</ion-card-title>
+          <ion-card-subtitle>{{comensal.apellidos}}</ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-label *ngIf="!comensal.alergeno && !comensal.infantil">Lleva Menu normal</ion-label>
+          <ion-label *ngIf="comensal.alergeno && !(comensal.infantil && comensal.alergeno)">Lleva Menu alérgeno</ion-label>
+          <ion-label *ngIf="comensal.infantil && !(comensal.infantil && comensal.alergeno)">Lleva Menu infantil</ion-label>
+          <ion-label *ngIf="comensal.infantil && comensal.alergeno">Lleva Menu infantil alérgeno</ion-label>
+          <ion-buttons slot="buttons">
+            <ion-button color="danger" (click)="borrarComensal(comensal.id!)">Borrar</ion-button>
+            <ion-button color="primary" (click)="irAEditarComensal(comensal)">Editar</ion-button>
+          </ion-buttons>
+        </ion-card-content>        
+      </ion-card>
+    </ion-item>
+  </ion-list>    
+</ion-content>
+

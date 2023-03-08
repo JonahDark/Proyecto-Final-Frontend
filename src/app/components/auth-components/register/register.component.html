@@ -1,0 +1,302 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Usuario</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="es_admin && !es_crear_usuario">
+  <div class="center">
+    <h2>Edición de datos</h2>
+  </div>
+  <form [formGroup]="formularioRegistro" class="form" (submit)="validarFormulario()">
+    <ion-list>
+
+      <!--<<<<<<<<<<USERNAME>>>>>>>>>>-->
+      <ion-item>
+        <ion-input placeholder="Username" type="text" id="username" formControlName="username"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="username?.errors?.['required'] && username?.touched">
+        <p [ngStyle]="{color: 'tomato'}">El campo username es obligatorio</p>
+      </ion-item>
+      <ion-item *ngIf="username?.errors?.['minLength'] && username?.touched">
+        <p [ngStyle]="{color: 'tomato'}">El username debe contener 1 digito como mínimio</p>
+      </ion-item>
+      <ion-item *ngIf="username?.errors?.['maxLength'] && username?.touched">
+        <p [ngStyle]="{color: 'tomato'}">El username debe contener 20 digito como máximo</p>
+      </ion-item>
+
+      <!--<<<<<<<<<<EMAIL>>>>>>>>>>-->
+      <ion-item>
+        <ion-input placeholder="E-mail" type="email" id="email" formControlName="email"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="email?.errors?.['required'] && email?.touched">
+        <p [ngStyle]="{color: 'tomato'}">El campo email es obligatorio</p>
+      </ion-item>
+      <ion-item *ngIf="email?.errors?.['email']">
+        <p [ngStyle]="{color: 'tomato'}">Formato de email no valido</p>
+      </ion-item>
+
+      <!--<<<<<<<<<<PASSWORD>>>>>>>>>>-->
+      <ion-item>
+        <ion-input placeholder="Cambiar contraseña" type="password" id="password"
+          formControlName="password"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="password?.errors?.['required'] && password?.touched">
+        <p [ngStyle]="{color: 'tomato'}">El campo password es obligatorio</p>
+      </ion-item>
+      <ion-item *ngIf="password?.errors?.['pattern']">
+        <ion-list [ngStyle]="{color: 'tomato'}">
+          <ion-header>
+            <p>El password debe cumplir los siguientes requisitos:</p>
+          </ion-header>
+          <ion-item [ngStyle]="{color: 'tomato'}">
+            Minimo 9 caracteres.
+          </ion-item>
+          <ion-item [ngStyle]="{color: 'tomato'}">
+            Maximo 30 caracteres.
+          </ion-item>
+          <ion-item [ngStyle]="{color: 'tomato'}">
+            Al menos una letra mayúscula.
+          </ion-item>
+          <ion-item [ngStyle]="{color: 'tomato'}">
+            Al menos una letra minúscula.
+          </ion-item>
+          <ion-item [ngStyle]="{color: 'tomato'}">
+            Al menos un dígito.
+          </ion-item>
+          <ion-item [ngStyle]="{color: 'tomato'}">
+            Al menos un caracter especial.
+          </ion-item>
+        </ion-list>
+      </ion-item>
+      <!--<<<<<<<<<<TELEFONO>>>>>>>>>>-->
+      <ion-item>
+        <ion-input placeholder="Telefono" type="tel" id="telefono" formControlName="telefono"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="telefono?.errors?.['required'] && telefono?.touched">
+        <p [ngStyle]="{color: 'tomato'}">El campo telefono es obligatorio</p>
+      </ion-item>
+      <ion-item *ngIf="telefono?.errors?.['pattern']">
+        <p [ngStyle]="{color: 'tomato'}">Debe contener 9 dígitos</p>
+      </ion-item>
+      
+      <!--<<<<<<<<<<ROL>>>>>>>>>>-->
+      <ion-item>
+        <ion-label>Rol:</ion-label>
+        <ion-select placeholder="Rol" formControlName="rol">
+          <ion-select-option value="ADMIN">ADMIN</ion-select-option>
+          <ion-select-option value="USER">USER</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+    </ion-list>
+
+    <ion-buttons class="botoneraHorizontal">
+      <ion-button type="button" expand="block" shape="round" color="danger" (click)="mostrarAlerta()">
+        Cancelar
+      </ion-button>
+      <ion-button type="submit" expand="block" shape="round" color="success" [disabled]="formularioRegistro.invalid"
+        (click)="editarUsuario(usuario.id!)">
+        Editar
+      </ion-button>
+    </ion-buttons>
+  </form>
+</ion-content>
+
+<ion-content *ngIf="es_admin && es_crear_usuario">
+  <div class="center">
+    <h2>Creación de Usuario</h2>
+  </div>
+  <form [formGroup]="formularioRegistro" class="form" (submit)="validarFormulario()">
+    <ion-list>
+
+      <!--<<<<<<<<<<USERNAME>>>>>>>>>>-->
+      <ion-item>
+        <ion-input placeholder="Username" type="text" id="username" formControlName="username"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="username?.errors?.['required'] && username?.touched">
+        <p [ngStyle]="{color: 'tomato'}">El campo username es obligatorio</p>
+      </ion-item>
+      <ion-item *ngIf="username?.errors?.['minLength'] && username?.touched">
+        <p [ngStyle]="{color: 'tomato'}">El username debe contener 1 digito como mínimio</p>
+      </ion-item>
+      <ion-item *ngIf="username?.errors?.['maxLength'] && username?.touched">
+        <p [ngStyle]="{color: 'tomato'}">El username debe contener 20 digito como máximo</p>
+      </ion-item>
+
+      <!--<<<<<<<<<<EMAIL>>>>>>>>>>-->
+      <ion-item>
+        <ion-input placeholder="E-mail" type="email" id="email" formControlName="email"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="email?.errors?.['required'] && email?.touched">
+        <p [ngStyle]="{color: 'tomato'}">El campo email es obligatorio</p>
+      </ion-item>
+      <ion-item *ngIf="email?.errors?.['email']">
+        <p [ngStyle]="{color: 'tomato'}">Formato de email no valido</p>
+      </ion-item>
+
+      <!--<<<<<<<<<<PASSWORD>>>>>>>>>>-->
+      <ion-item>
+        <ion-input placeholder="Contraseña" type="password" id="password" formControlName="password"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="password?.errors?.['required'] && password?.touched">
+        <p [ngStyle]="{color: 'tomato'}">El campo password es obligatorio</p>
+      </ion-item>
+      <ion-item *ngIf="password?.errors?.['pattern']">
+        <ion-list [ngStyle]="{color: 'tomato'}">
+          <ion-header>
+            <p>El password debe cumplir los siguientes requisitos:</p>
+          </ion-header>
+          <ion-item [ngStyle]="{color: 'tomato'}">
+            Minimo 9 caracteres.
+          </ion-item>
+          <ion-item [ngStyle]="{color: 'tomato'}">
+            Maximo 30 caracteres.
+          </ion-item>
+          <ion-item [ngStyle]="{color: 'tomato'}">
+            Al menos una letra mayúscula.
+          </ion-item>
+          <ion-item [ngStyle]="{color: 'tomato'}">
+            Al menos una letra minúscula.
+          </ion-item>
+          <ion-item [ngStyle]="{color: 'tomato'}">
+            Al menos un dígito.
+          </ion-item>
+          <ion-item [ngStyle]="{color: 'tomato'}">
+            Al menos un caracter especial.
+          </ion-item>
+        </ion-list>
+      </ion-item>
+      <!--<<<<<<<<<<TELEFONO>>>>>>>>>>-->
+      <ion-item>
+        <ion-input placeholder="Telefono" type="tel" id="telefono" formControlName="telefono"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="telefono?.errors?.['required'] && telefono?.touched">
+        <p [ngStyle]="{color: 'tomato'}">El campo telefono es obligatorio</p>
+      </ion-item>
+      <ion-item *ngIf="telefono?.errors?.['pattern']">
+        <p [ngStyle]="{color: 'tomato'}">Debe contener 9 dígitos</p>
+      </ion-item>
+      
+      <!--<<<<<<<<<<ROL>>>>>>>>>>-->
+      <ion-item>
+        <ion-label>Rol:</ion-label>
+        <ion-select placeholder="Rol" formControlName="rol">
+          <ion-select-option value="ADMIN">ADMIN</ion-select-option>
+          <ion-select-option value="USER">USER</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+    </ion-list>
+
+    <ion-buttons class="botoneraHorizontal">
+      <ion-button type="button" expand="block" shape="round" color="danger" (click)="mostrarAlerta()">
+        Cancelar
+      </ion-button>
+      <ion-button type="submit" expand="block" shape="round" color="success" [disabled]="formularioRegistro.invalid"
+        (click)="crearUsuario()">
+        Crear
+      </ion-button>
+    </ion-buttons>
+  </form>
+</ion-content>
+
+<ion-content *ngIf="!es_admin">
+  <div class="center">
+    <h2>Registro de datos</h2>
+  </div>
+  <form [formGroup]="formularioRegistro" class="form" (submit)="validarFormulario()">
+    <ion-list>
+
+      <!--<<<<<<<<<<USERNAME>>>>>>>>>>-->
+      <ion-item>
+        <ion-input placeholder="Username" type="text" id="username" formControlName="username"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="username?.errors?.['required'] && username?.touched">
+        <p [ngStyle]="{color: 'tomato'}">El campo username es obligatorio</p>
+      </ion-item>
+      <ion-item *ngIf="username?.errors?.['minLength'] && username?.touched">
+        <p [ngStyle]="{color: 'tomato'}">El username debe contener 1 digito como mínimio</p>
+      </ion-item>
+      <ion-item *ngIf="username?.errors?.['maxLength'] && username?.touched">
+        <p [ngStyle]="{color: 'tomato'}">El username debe contener 20 digito como máximo</p>
+      </ion-item>
+
+      <!--<<<<<<<<<<EMAIL>>>>>>>>>>-->
+      <ion-item>
+        <ion-input placeholder="E-mail" type="email" id="email" formControlName="email"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="email?.errors?.['required'] && email?.touched">
+        <p [ngStyle]="{color: 'tomato'}">El campo email es obligatorio</p>
+      </ion-item>
+      <ion-item *ngIf="email?.errors?.['email']">
+        <p [ngStyle]="{color: 'tomato'}">Formato de email no valido</p>
+      </ion-item>
+
+      <!--<<<<<<<<<<PASSWORD>>>>>>>>>>-->
+      <ion-item>
+        <ion-input placeholder="Contraseña" type="password" id="password" formControlName="password"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="password?.errors?.['required'] && password?.touched">
+        <p [ngStyle]="{color: 'tomato'}">El campo password es obligatorio</p>
+      </ion-item>
+      <ion-item *ngIf="password?.errors?.['pattern']">
+        <ion-list [ngStyle]="{color: 'tomato'}">
+          <ion-header>
+            <p>El password debe cumplir los siguientes requisitos:</p>
+          </ion-header>
+          <ion-item [ngStyle]="{color: 'tomato'}">
+            Minimo 9 caracteres.
+          </ion-item>
+          <ion-item [ngStyle]="{color: 'tomato'}">
+            Maximo 30 caracteres.
+          </ion-item>
+          <ion-item [ngStyle]="{color: 'tomato'}">
+            Al menos una letra mayúscula.
+          </ion-item>
+          <ion-item [ngStyle]="{color: 'tomato'}">
+            Al menos una letra minúscula.
+          </ion-item>
+          <ion-item [ngStyle]="{color: 'tomato'}">
+            Al menos un dígito.
+          </ion-item>
+          <ion-item [ngStyle]="{color: 'tomato'}">
+            Al menos un caracter especial.
+          </ion-item>
+        </ion-list>
+      </ion-item>
+      <!--<<<<<<<<<<TELEFONO>>>>>>>>>>-->
+      <ion-item>
+        <ion-input placeholder="Telefono" type="tel" id="telefono" formControlName="telefono"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="telefono?.errors?.['required'] && telefono?.touched">
+        <p [ngStyle]="{color: 'tomato'}">El campo telefono es obligatorio</p>
+      </ion-item>
+      <ion-item *ngIf="telefono?.errors?.['pattern']">
+        <p [ngStyle]="{color: 'tomato'}">Debe contener 9 dígitos</p>
+      </ion-item>
+      
+      <!--<<<<<<<<<<ACPETAR TERMINOS>>>>>>>>>>-->
+      <ion-item>
+        <ion-checkbox checked="false" slot="start" color="secondary" formControlName="acepta"></ion-checkbox>
+        <ion-label>Estoy de acuerdo con los <br>términos y condiciones</ion-label>
+      </ion-item>
+      <ion-item *ngIf="acepta?.errors?.['requiredTrue'] && !acepta?.touched">
+        <p [ngStyle]="{color: 'tomato'}">Debe aceptar los términos</p>
+      </ion-item>
+    </ion-list>
+
+    <ion-buttons class="botoneraHorizontal">
+      <ion-button type="button" expand="block" shape="round" color="danger" (click)="mostrarAlerta()">
+        Cancelar
+      </ion-button>
+      <ion-button type="submit" expand="block" shape="round" color="success" [disabled]="formularioRegistro.invalid"
+        (click)="registrarse()">
+        Aceptar
+      </ion-button>
+    </ion-buttons>
+  </form>
+</ion-content>

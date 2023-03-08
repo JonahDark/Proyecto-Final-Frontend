@@ -1,0 +1,79 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "~@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "~@ionic/angular/css/normalize.css";
+@import "~@ionic/angular/css/structure.css";
+@import "~@ionic/angular/css/typography.css";
+@import '~@ionic/angular/css/display.css';
+
+/* Optional CSS utils that can be commented out */
+@import "~@ionic/angular/css/padding.css";
+@import "~@ionic/angular/css/float-elements.css";
+@import "~@ionic/angular/css/text-alignment.css";
+@import "~@ionic/angular/css/text-transformation.css";
+@import "~@ionic/angular/css/flex-utils.css";
+
+:root {
+    --ion-color-event: #804040;
+    --ion-color-event-rgb: 128, 64, 64;
+    --ion-color-event-contrast: #ffffff;
+    --ion-color-event-contrast-rgb: 255, 255, 255;
+    --ion-color-event-shade: #713838;
+    --ion-color-event-tint: #8d5353;
+}
+
+.ion-color-event {
+    --ion-color-base: var(--ion-color-event);
+    --ion-color-base-rgb: var(--ion-color-event-rgb);
+    --ion-color-contrast: var(--ion-color-event-contrast);
+    --ion-color-contrast-rgb: var(--ion-color-event-contrast-rgb);
+    --ion-color-shade: var(--ion-color-event-shade);
+    --ion-color-tint: var(--ion-color-event-tint);
+
+    --ion-background-color: #804040;
+    --ion-background-color-rgb: 128, 64, 64;
+
+    --ion-text-color: #ffffff;
+    --ion-text-color-rgb: 255, 255, 255;
+
+    --ion-color-step-50: #864a4a;
+    --ion-color-step-100: #8d5353;
+    --ion-color-step-150: #935d5d;
+    --ion-color-step-200: #996666;
+    --ion-color-step-250: #a07070;
+    --ion-color-step-300: #a67979;
+    --ion-color-step-350: #ac8383;
+    --ion-color-step-400: #b38c8c;
+    --ion-color-step-450: #b99696;
+    --ion-color-step-500: #c0a0a0;
+    --ion-color-step-550: #c6a9a9;
+    --ion-color-step-600: #ccb3b3;
+    --ion-color-step-650: #d3bcbc;
+    --ion-color-step-700: #d9c6c6;
+    --ion-color-step-750: #dfcfcf;
+    --ion-color-step-800: #e6d9d9;
+    --ion-color-step-850: #ece2e2;
+    --ion-color-step-900: #f2ecec;
+    --ion-color-step-950: #f9f5f5;
+}
+
+.ion-color-event {
+	--ion-color-base: var(--ion-color-event);
+	--ion-color-base-rgb: var(--ion-color-event-rgb);
+	--ion-color-contrast: var(--ion-color-event-contrast);
+	--ion-color-contrast-rgb: var(--ion-color-event-contrast-rgb);
+	--ion-color-shade: var(--ion-color-event-shade);
+	--ion-color-tint: var(--ion-color-event-tint);
+}

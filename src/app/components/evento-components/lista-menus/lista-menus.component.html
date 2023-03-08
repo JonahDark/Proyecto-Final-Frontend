@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+      <ion-title class="titleHeader">Menús</ion-title>
+      <ion-icon *ngIf="es_admin && !es_crear_evento && !es_edicion_evento" name="add-circle-outline" type="button" (click)="irAAddMenu()" size="large" slot="end"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content *ngIf="num_menus == 0">
+  <h3 style="color: tomato;"> No existen menús</h3>
+</ion-content>
+
+<ion-content>
+  <ion-list *ngFor="let menu of menus">
+    <ion-item>
+      <ion-card>
+        <img [src]="menu.foto" />
+        <ion-card-header>
+          <ion-card-title>{{menu.nombre}}</ion-card-title>  
+          <ion-card-subtitle>{{menu.precio_menu | currency: 'EUR':'symbol':undefined:'es-ES'}}</ion-card-subtitle>        
+        </ion-card-header>
+
+        <ion-card-content>
+          <ion-buttons slot="buttons">
+            <ion-button *ngIf="es_admin && !es_crear_evento && !es_edicion_evento" color="primary"
+              (click)="irAEditarMenu(menu)">Editar</ion-button>
+            <ion-button *ngIf="es_admin && !es_crear_evento && !es_edicion_evento" color="danger"
+              (click)="borrarMenu(menu.id!)">Borrar</ion-button>
+            <ion-button *ngIf="(!es_admin || es_admin ) && es_crear_evento || es_edicion_evento" color="success"
+              (click)="elegirMenu(menu)">Elegir</ion-button>
+          </ion-buttons>
+        </ion-card-content>
+      </ion-card>
+    </ion-item>
+  </ion-list>
+</ion-content>

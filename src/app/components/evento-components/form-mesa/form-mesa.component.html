@@ -1,0 +1,73 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Formulario Mesa</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="mesa.id">
+  <form [formGroup]="formMesa" class="form" (submit)="validarFormulario()">
+    <ion-list>
+      <ion-item>
+        <ion-label>Nombre de mesa: </ion-label>
+        <ion-input formControlName="nombre" placeholder="Nombre" type="text" id="nombre"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Tipo mesa:</ion-label>
+        <ion-select placeholder="Tipo" formControlName="tipoMesa">
+          <ion-select-option *ngIf="num_comensales_mesa <= mesa.num_max_comensales_redonda!"
+            value="Redonda">Redonda</ion-select-option>
+          <ion-select-option *ngIf="num_comensales_mesa <= mesa.num_max_comensales_larga!"
+            value="Larga">Larga</ion-select-option>
+          <ion-select-option *ngIf="num_comensales_mesa <= mesa.num_max_comensales_media_luna!" value="MediaLuna">Media
+            Luna</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+    <ion-buttons class="botoneraHorizontal">
+      <ion-button *ngIf="es_crear_mesa" type="submit" expand="block" shape="round" color="success"
+        [disabled]="formMesa.invalid" (click)="crearMesa()">
+        Crear
+      </ion-button>
+      <ion-button type="button" expand="block" shape="round" color="danger" (click)="mostrarAlerta()">
+        Cancelar
+      </ion-button>
+      <ion-button *ngIf="!es_crear_mesa" type="submit" expand="block" shape="round" color="success"
+        [disabled]="formMesa.invalid" (click)="editarMesa(mesa!)">
+        Editar
+      </ion-button>
+    </ion-buttons>
+  </form>
+</ion-content>
+
+<ion-content *ngIf="!mesa.id">
+  <form [formGroup]="formMesa" class="form" (submit)="validarFormulario()">
+    <ion-list>
+      <ion-item>
+        <ion-label>Nombre de mesa: </ion-label>
+        <ion-input formControlName="nombre" placeholder="Nombre" type="text" id="nombre"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Tipo mesa:</ion-label>
+        <ion-select placeholder="Tipo" formControlName="tipoMesa">
+          <ion-select-option value="Redonda">Redonda</ion-select-option>
+          <ion-select-option value="Larga">Larga</ion-select-option>
+          <ion-select-option value="MediaLuna">Media
+            Luna</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+    <ion-buttons class="botoneraHorizontal">
+      <ion-button *ngIf="es_crear_mesa" type="submit" expand="block" shape="round" color="success"
+        [disabled]="formMesa.invalid" (click)="crearMesa()">
+        Crear
+      </ion-button>
+      <ion-button type="button" expand="block" shape="round" color="danger" (click)="mostrarAlerta()">
+        Cancelar
+      </ion-button>
+      <ion-button *ngIf="!es_crear_mesa" type="submit" expand="block" shape="round" color="success"
+        [disabled]="formMesa.invalid" (click)="editarMesa(mesa!)">
+        Editar
+      </ion-button>
+    </ion-buttons>
+  </form>
+</ion-content>

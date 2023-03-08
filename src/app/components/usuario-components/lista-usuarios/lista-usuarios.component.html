@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons>
+      <ion-back-button></ion-back-button>
+      <ion-title>Usuarios</ion-title>
+      <ion-icon name="person-add-outline" (click)="irAAddUsuario()" size="large"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list *ngFor="let usuario of usuarios">
+    <ion-item *ngIf="usuario.rol!=='ADMIN'">
+      <ion-label>USERNAME: {{usuario.username}}<br>EMAIL: {{usuario.email}}<br>ROL: {{usuario.rol}}</ion-label>      
+      <ion-button color="primary" (click)="irAEditarUsuario(usuario)">Editar</ion-button>      
+      <ion-button color="danger" (click)="borrarUsuario(usuario.id!)">Borrar</ion-button>
+    </ion-item>
+  </ion-list>
+</ion-content>

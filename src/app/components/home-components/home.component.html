@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title *ngIf="!es_admin">Bienvenido {{usuario.username}}</ion-title>
+    <ion-title *ngIf="es_admin">Bienvenido {{admin.username}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="center">
+    <h3>Menú</h3>
+  </div>
+
+
+  <ion-list lines="none">
+    <ion-item>
+          <ion-button (click)="irACrearEvento()">Crear Evento</ion-button>
+    </ion-item>
+
+    <ion-item *ngIf="!es_admin">
+      <ion-button (click)="irAVerEventos()">Ver Eventos</ion-button>
+    </ion-item>
+
+    <ion-item *ngIf="es_admin">
+      <ion-button (click)="irAVerEventos()">Ver Eventos</ion-button>
+    </ion-item>
+
+    <ion-item *ngIf="es_admin">
+      <ion-button routerLink="/evento/ubicaciones">Ver Ubicaciones</ion-button>
+    </ion-item>
+
+    <ion-item *ngIf="es_admin">
+      <ion-button routerLink="/evento/decoraciones">Ver Decoraciones</ion-button>
+    </ion-item>
+
+    <ion-item *ngIf="es_admin">
+      <ion-button routerLink="/evento/menus">Ver Menús</ion-button>
+    </ion-item>
+
+    <ion-item *ngIf="es_admin">
+      <ion-button routerLink="/admin/usuarios">Ver Usuarios</ion-button>
+    </ion-item>
+
+    <ion-item>
+      <ion-button color="danger" (click)="cerrarSesion()">Cerrar Sesión</ion-button>
+    </ion-item>
+
+  </ion-list>
+</ion-content>
