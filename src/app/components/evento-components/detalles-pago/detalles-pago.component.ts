@@ -149,14 +149,10 @@ export class DetallesPagoComponent implements OnInit {
               this.comensales_normales.push(comensal);
             }
           }
-          this.num_menu_normales = Object.keys(this.comensales_normales).length;
-          console.log(this.num_menu_normales)
-          this.num_menu_alergenos = Object.keys(this.comensales_alergenos).length;
-          console.log(this.num_menu_alergenos)
-          this.num_menu_infantiles = Object.keys(this.comensales_infantiles).length;
-          console.log(this.num_menu_infantiles)
-          this.num_menu_alergenos_infantiles = Object.keys(this.comensales_alergenos_infantiles).length;
-          console.log(this.num_menu_alergenos_infantiles)
+          this.num_menu_normales = Object.keys(this.comensales_normales).length;          
+          this.num_menu_alergenos = Object.keys(this.comensales_alergenos).length;          
+          this.num_menu_infantiles = Object.keys(this.comensales_infantiles).length;          
+          this.num_menu_alergenos_infantiles = Object.keys(this.comensales_alergenos_infantiles).length;          
 
 
           this.precio_total_menu_normal = this.num_menu_normales * this.menu.precio_menu!;
@@ -181,11 +177,7 @@ export class DetallesPagoComponent implements OnInit {
       },
       error: () => this.errorToast("No ha sido posible realizar el pago"),
       complete: () => console.info("confirmacion completada")
-
     });
-
-
-
 
     this.eventoService.updateEvento(this.evento, this.evento.id!).subscribe({
       next: (evento) => {
@@ -206,6 +198,7 @@ export class DetallesPagoComponent implements OnInit {
 
     await alert.present();
   }
+
   async successToast(message: string) {
     const toast = await this.toastController.create({
       message: message,
@@ -215,7 +208,6 @@ export class DetallesPagoComponent implements OnInit {
     });
     await toast.present();
   }
-
 
   async errorToast(message: string) {
     const toast = await this.toastController.create({

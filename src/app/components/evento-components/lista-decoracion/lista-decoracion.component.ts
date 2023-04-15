@@ -31,13 +31,14 @@ export class ListaDecoracionComponent implements OnInit {
     this.decoracionService.getDecoraciones().subscribe({
       next: (decoraciones) => {
         this.decoraciones = decoraciones;
+        this.num_decoraciones = Object.keys(this.decoraciones).length
         if (this.es_edicion_evento) {
           this.decoracionService
             .getDecoracionesNoEscogidas(this.decoraciones)
             .subscribe({
               next: (decoraciones) => {
-                this.decoraciones = decoraciones;
-                this.num_decoraciones = Object.keys(this.decoraciones).length
+                this.decoraciones = decoraciones; 
+                this.num_decoraciones = Object.keys(this.decoraciones).length               
               },
               error: (error) => console.error(`${error}`),
               complete: () =>
